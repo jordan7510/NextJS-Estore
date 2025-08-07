@@ -9,7 +9,7 @@ export default function StoreClient({ products, categories }) {
         : products.filter(p => p.category === selectedCategory)
 
     return (
-        <div className='grid grid-cols-5 h-[100vh-80px] min-h[100vh - 80px] gap-4'>
+        <div className='grid grid-cols-5 h-[100vh-80px] gap-4'>
             <CategoryListing
                 categories={categories}
                 selectedCategory={selectedCategory}
@@ -33,7 +33,7 @@ const CategoryListing = ({ categories, selectedCategory, setSelectedCategory }) 
 }
 
 const ProductListing = ({ filteredProducts }) => {
-    return <div className='col-span-4 grid grid-cols-4 mt-2 shadow-md'>
+    return <div className='col-span-4 grid grid-cols-4 mt-2 h-[85vh] overflow-y-scroll scrollbar-hidden shadow-md'>
         {
             filteredProducts.length > 0 ? (
                 filteredProducts.map((fp, i) => {

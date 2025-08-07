@@ -15,4 +15,18 @@ const getProducts = async () => {
     }
 }
 
-export { getCategories, getProducts }
+const getProductById = async (id) => {
+   
+    console.log("getProduct by id", id);
+    
+    try {
+        const response = await axios.get(`https://fakestoreapi.in/api/products/${id}`)
+        const data = response.data.products
+        console.log("get prod by id", data);
+        return data
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+export { getCategories, getProducts,getProductById }

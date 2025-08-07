@@ -8,7 +8,6 @@ export default async function StorePage() {
   const categories = await getCategories();
 
  
-
   return (
     <Container>
       <StoreClient products={products} categories={["All",...categories]}/>
