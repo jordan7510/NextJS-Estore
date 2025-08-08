@@ -1,33 +1,33 @@
 import Container from "@/components/Container";
 import { getProductById, getProducts } from "@/library";
 import Image from "next/image";
+import { FiShoppingCart } from "react-icons/fi";
+import QuantitySelector from "@/components/productDetialPage/QuantitySelector";
 
-export default async function ProductPage({ params }) {
+export default async function ProductDetailPage({ params }) {
     const { id } = await params;
     const product = await getProductById(id);
-    console.log("product by id",product);
-    
+
     return (
         <Container>
-            <div>Product Detail page of {id}</div>
-            <div>
-                <div>
-                    {/* <Image
-                    src={product?.image}
-                    /> */}
+            <div className=" flex flex-col md:flex-row items-center justify-around gap-4 p-2 ">
+                <div className=" shadow-2xl  w-sm md:max-w-lg md:min-w-lg relative aspect-square ">
+                    <Image
+                        priority
+                        fill
+                        alt={product?.title || "product-image"}
+                        src={product?.image}
+                        className="object-contain"
+                        sizes="(max-width: 768px) 100vw, 300px"
+                    />
                 </div>
-                <div>
+                <div className="p-4">
                     <div>
-                        <h2>title</h2>
-                        <p>Description</p>
+                        <h2 className="font-medium sm:text-lg md:text-2xl mb-4">{product?.title}</h2>
+                        <p className="text-gray-600 text-sm mb-4">{product?.description}</p>
+                        <p className="text-lg sm:text-xl md:text-3xl font-bold mb-4 text-gray-600">${product?.price}.00</p>
                     </div>
-                    <div>
-                        <button>Quantity</button>
-                    </div>
-                    <div>
-
-                    </div>
-
+                    <QuantitySelector id={id}/>
                 </div>
             </div>
         </Container>

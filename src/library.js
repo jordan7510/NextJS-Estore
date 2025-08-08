@@ -16,13 +16,10 @@ const getProducts = async () => {
 }
 
 const getProductById = async (id) => {
-   
-    console.log("getProduct by id", id);
-    
+
     try {
         const response = await axios.get(`https://fakestoreapi.in/api/products/${id}`)
-        const data = response.data.products
-        console.log("get prod by id", data);
+        const data = response.data.product
         return data
     } catch (error) {
         console.error(error)

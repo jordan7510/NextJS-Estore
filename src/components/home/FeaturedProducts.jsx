@@ -3,7 +3,7 @@ import ProductsCard from './ProductsCard'
 import Container from '../Container'
 
 export default async function FeaturedProducts() {
-    const response = await fetch("https://fakestoreapi.in/api/products?limit=5")
+    const response = await fetch("https://fakestoreapi.in/api/products?limit=10")
     const data = await response.json()
 
     return (
