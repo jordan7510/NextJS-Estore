@@ -2,7 +2,7 @@ import Container from "@/components/Container";
 import { getProductById, getProducts } from "@/library";
 import Image from "next/image";
 import { FiShoppingCart } from "react-icons/fi";
-import QuantitySelector from "@/components/productDetialPage/QuantitySelector";
+import QuantitySelector from "@/components/productDetialPage/QuantitySelector.jsx";
 
 export default async function ProductDetailPage({ params }) {
     const { id } = await params;
