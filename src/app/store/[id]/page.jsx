@@ -27,7 +27,7 @@ export default async function ProductDetailPage({ params }) {
                         <p className="text-gray-600 text-sm mb-4">{product?.description}</p>
                         <p className="text-lg sm:text-xl md:text-3xl font-bold mb-4 text-gray-600">${product?.price}.00</p>
                     </div>
-                    <QuantitySelector id={id}/>
+                    <QuantitySelector product={product}/>
                 </div>
             </div>
         </Container>
