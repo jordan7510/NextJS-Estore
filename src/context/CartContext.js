@@ -21,9 +21,7 @@ export const CartProvider = ({ children }) => {
     }, [cartItems])
 
     const addToCart = (q, product) => {
-        console.log("product", product);
-        console.log("quantity", q);
-
+    
         setCartItems(prev => {
             const existing = prev.find(item => item.id === product.id)
             if(existing){
@@ -33,6 +31,13 @@ export const CartProvider = ({ children }) => {
             return [...prev, { ...product, quantity:q }]
         }
         )
+    }
+
+    const updateCartItems = (quantity,cartItems)=>{
+        console.log("update quantity", quantity);
+        console.log("update cartItems", cartItems);
+        
+
     }
 
     const removeFromCart = (id)=>{
@@ -47,7 +52,7 @@ export const CartProvider = ({ children }) => {
 
 
     return (
-        <CartContext.Provider value={{ cartItems, setCartItems, totalQuantity, addToCart,removeFromCart }}>
+        <CartContext.Provider value={{ cartItems, setCartItems, totalQuantity, addToCart,removeFromCart,updateCartItems }}>
             {children}
         </CartContext.Provider>
     )

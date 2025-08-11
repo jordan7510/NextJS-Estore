@@ -5,18 +5,18 @@ export const CartDetail = () => {
     const { cartItems } = useCart();
 
     return (
-        <div className="min-h-[80vh] mt-5 border grid grid-cols-12">
+        <div className="min-h-[80vh] mt-5 grid grid-cols-1 md:grid-cols-12 ">
 
             {cartItems.length > 0 ? (
                 <>
-                    <div className=" border col-span-7">
+                    <div className=" md:col-span-7">
                         {
                             cartItems.map((ci, i)=>{
                                 return <CartProducts key={i} cartItems={ci} />
                             })
                         }
                     </div>
-                    <div className="border col-span-5">
+                    <div className=" col-span-5">
                         Checkout section
                     </div>
                 </>
