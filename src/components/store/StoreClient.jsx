@@ -33,7 +33,7 @@ const CategoryListing = ({ categories, selectedCategory, setSelectedCategory }) 
 }
 
 const ProductListing = ({ filteredProducts }) => {
-    return <div className='col-span-4 grid grid-cols-4 mt-2 h-[85vh] overflow-y-scroll scrollbar-hidden shadow-md'>
+    return <div className='col-span-4 grid grid-cols-4 mt-2 h-[85vh] overflow-y-auto customScrollbar shadow-md'>
         {
             filteredProducts.length > 0 ? (
                 filteredProducts.map((fp, i) => {
