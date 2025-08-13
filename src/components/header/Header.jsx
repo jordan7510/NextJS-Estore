@@ -51,8 +51,8 @@ export default function Header() {
                 </div>
             </Container>
             {/* Dropdown menu section */}
-            <div className={`md:hidden absolute top-full left-0 w-full z-20 flex items-center justify-center flex-col px-2 mt-2 bg-white/80 backdrop-blur-sm shadow
-                 transition-all duration-300 ease-in-out ${isMenuOpen ?'max-h-64 opacity-100' : 'max-h-0 opacity-0'} `}>
+            <div className={`md:hidden absolute top-full left-0 w-full z-20 flex items-center justify-center flex-col px-2 py-3 bg-white/90 backdrop-blur-sm shadow
+                 transition-all duration-500 ease-in-out ${isMenuOpen ?'max-h-64 opacity-100' : 'max-h-0 opacity-0'} `}>
                 <div className='flex w-1/2 mb-2 items-center border border-pink-400 rounded-full'>
                     <input
                         className='text-slate-700 w-full px-4 outline-none'
@@ -63,13 +63,13 @@ export default function Header() {
                     </div>
                 </div>
                 <ul>
-                    <Link href={'/'}><li className='text-lg hover:text-pink-600 font-medium text-gray-700 duration-200'>Home</li>
+                    <Link onClick={()=>setIsMenuOpen(!isMenuOpen)} href={'/'}><li className='text-lg hover:text-pink-600 font-medium text-gray-700 duration-200'>Home</li>
                     </Link>
-                    <Link href={'/store'}><li className='text-lg hover:text-pink-600 font-medium text-gray-700 duration-200'>Store</li>
+                    <Link onClick={()=>setIsMenuOpen(!isMenuOpen)} href={'/store'}><li className='text-lg hover:text-pink-600 font-medium text-gray-700 duration-200'>Store</li>
                     </Link>
                 </ul>
                 <div className='relative mt-3'>
-                    <Link className="hover:text-pink-600" href={"/cart"}> <FiShoppingCart size={24} />
+                    <Link onClick={()=>setIsMenuOpen(!isMenuOpen)} className="hover:text-pink-600" href={"/cart"}> <FiShoppingCart size={24} />
                     </Link>
                     <span className='absolute top-[-10px] right-[-20px] bg-pink-600  text-white text-xs rounded-full h-5 w-5 flex items-center justify-center'>
                         {totalQuantity}
