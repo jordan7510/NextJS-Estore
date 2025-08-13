@@ -1,17 +1,18 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header"
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter"
+import { Oswald } from "next/font/google";
+import { theme } from "@/theme";
+import { ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import Header from "@/components/header/Header"
 import Footer from "@/components/Footer"
 import { CartProvider } from "@/context/CartContext";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const oswald = Oswald({
+  weight: ['300', '400', '500', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-oswald',
 });
 
 export const metadata = {
@@ -23,17 +24,23 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased customScrollbar`}
+        className={`${oswald.variable} antialiased customScrollbar`}
       >
         <CartProvider>
-          {/* Header */}
-          <Header />
-          {children}
-          <Footer />
-          {/* Footer */}
+          <AppRouterCacheProvider>
+            <ThemeProvider theme={theme}>
+              <CssBaseline/>
+                <Header />
+                <main>
+                  {children}
+                </main>
+                <Footer />
+            
+            </ThemeProvider>
+          </AppRouterCacheProvider>
         </CartProvider>
 
       </body>
-    </html>
+    </html >
   );
 }
