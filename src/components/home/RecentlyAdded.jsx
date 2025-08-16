@@ -1,10 +1,10 @@
 import React from 'react'
 import Container from '../Container'
 import ProductsCard from './ProductsCard';
+import { getProducts } from '@/library';
 
 export default async function RecentlyAdded() {
-  const response = await fetch("https://fakestoreapi.in/api/products?limit=10")
-  const data =  await response.json()
+const data = await getProducts();
   
   return (
     <div className='px-4 pb-8 mt-10 '>
@@ -12,7 +12,7 @@ export default async function RecentlyAdded() {
       <Container>
         <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 '>
           {
-            data.products.map((prod,index)=>{
+            data.slice(0,10).map((prod,index)=>{
               return <ProductsCard key={`${prod.id}-${index}`} product={prod}/>
             })
           }

@@ -1,13 +1,11 @@
 import Container from "@/components/Container";
-import { getProductById, getProducts } from "@/library";
+import { getProductById } from "@/library";
 import Image from "next/image";
-import { FiShoppingCart } from "react-icons/fi";
 import QuantitySelector from "@/components/productDetialPage/QuantitySelector.jsx";
 
 export default async function ProductDetailPage({ params }) {
     const { id } = await params;
     const product = await getProductById(id);
-
     return (
         <Container>
             <div className=" flex flex-col md:flex-row items-center justify-around gap-4 p-2 ">

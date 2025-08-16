@@ -2,8 +2,9 @@
 import ProductsCard from '@/components/home/ProductsCard'
 import React, { useState } from 'react'
 
-export default function StoreClient({ products, categories }) {
+export default function StoreClient({ products,cat }) {
     const [selectedCategory, setSelectedCategory] = useState("All")
+    const categories = ["All", ...cat]
 
     const filteredProducts = selectedCategory === "All" ? products
         : products.filter(p => p.category === selectedCategory)
@@ -15,7 +16,7 @@ export default function StoreClient({ products, categories }) {
                 selectedCategory={selectedCategory}
                 setSelectedCategory={setSelectedCategory}
             />
-            <ProductListing filteredProducts={filteredProducts} />
+            <ProductListing products={filteredProducts} />
         </div>
     )
 }
@@ -32,11 +33,11 @@ const CategoryListing = ({ categories, selectedCategory, setSelectedCategory }) 
     </div>
 }
 
-const ProductListing = ({ filteredProducts }) => {
+const ProductListing = ({ products }) => {
     return <div className='col-span-4 grid grid-cols-4 mt-2 h-[85vh] overflow-y-auto customScrollbar shadow-md'>
         {
-            filteredProducts.length > 0 ? (
-                filteredProducts.map((fp, i) => {
+            products.length > 0 ? (
+                products.map((fp, i) => {
                     return <ProductsCard key={"fp" + i} product={fp} />
                 })
             ) : (<div className='col-span-4'><p className='text-center font-medium text-2xl'>No Products availabe</p></div>)
