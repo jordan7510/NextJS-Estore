@@ -1,21 +1,21 @@
 "use client"
 import Link from 'next/link'
 import { useState } from 'react'
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 
 export default function SignupPage() {
 
     const [user, setUser] = useState({
-        username:"",
-        email:"",
-        password:"",
+        username: "",
+        email: "",
+        password: "",
     });
+    const [showPassword, setShowPassword] = useState(false)
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = (e) => {
         e.preventDefault;
-
     }
-    console.log("user",user);
-    
 
     return (
         <div className='flex items-center justify-center'>
@@ -52,7 +52,7 @@ export default function SignupPage() {
                                 type="text"
                                 name='username'
                                 required
-                                onChange={(e)=>setUser({...user, username:e.target.value})}
+                                onChange={(e) => setUser({ ...user, username: e.target.value })}
                             />
                         </div>
 
@@ -63,7 +63,7 @@ export default function SignupPage() {
                                 type="email"
                                 name='email'
                                 required
-                                onChange={(e)=>setUser({...user, email:e.target.value})}
+                                onChange={(e) => setUser({ ...user, email: e.target.value })}
                             />
                         </div>
 
@@ -77,15 +77,25 @@ export default function SignupPage() {
                         />
                        
                     </div> */}
-                        <div>
+                        <div className='relative'>
                             <input
                                 className="w-full rounded-md border-2 border-gray-400 outline-none p-3 text-sm focus:border-[#f63e7b]"
                                 placeholder="Password"
-                                type="password"
+                                type={`${showPassword ? "text":"password"}`}
                                 name='password'
                                 required
-                                onChange={(e)=>setUser({...user, password:e.target.value})}
+                                onChange={(e) => setUser({ ...user, password: e.target.value })}
                             />
+
+                            {
+                                showPassword ? (
+                                    <FaEyeSlash  onClick={()=>setShowPassword(!showPassword)} className='absolute top-3 right-0 mt-1 mx-4 hover:cursor-pointer hover:text-pink-600' />
+                                ) : (
+                                    <FaEye onClick={()=>setShowPassword(!showPassword)} className='absolute top-3 right-0 mt-1 mx-4 hover:cursor-pointer hover:text-pink-600' />
+                                )
+                            }
+
+
                             {/* {
                             showPasswordError ? (
                                 <p className='text-red-500 text-xs'>Password must have 8 characters, At least one uppercase letter, lowercase letter, one digit & one special character (e.g., !@#$%^&*) .</p>
@@ -112,7 +122,7 @@ export default function SignupPage() {
                             {/* {
                             loading ? (<ImSpinner3 className='loading-icon' />) : ("Create Account")
                         } */}
-                        Sign up
+                            Sign up
                         </button>
                     </div>
                 </form>

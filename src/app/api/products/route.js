@@ -23,19 +23,17 @@ export const POST = async (req) => {
         connectDB();
         const reqBody = await req.json();
         const { id } = reqBody;
-        console.log("id", id);
-        //Check id product already exists
+        //  Create new product
+        const newProduct = new Product(reqBody)
+        // Check if product already exists
         const existingProduct = await Product.findOne({ id });
-        console.log("existingProduct", existingProduct);
-        if (!existingProduct) {
-            //  Create new product
-            const newProduct = new Product(reqBody)
-            //Save new product to Database
-            const savedProduct = await newProduct.save()
-            return NextResponse.json({ success: true, message: "Product created successfully.", savedProduct }, { status: 201 })
+        if (existingProduct) {
+            console.log("Product already exists.")
+            return NextResponse.json({ error: "Product already exists" }, { status: 400 })
         }
-        console.log("Product already exists.")
-        return NextResponse.json({ error: "Product already exists" }, { status: 400 })
+        //Save new product to Database
+        const savedProduct = await newProduct.save()
+        return NextResponse.json({ success: true, message: "Product created successfully.", savedProduct }, { status: 201 })
     } catch (error) {
         return NextResponse.json({ success: false, message: "Error creating product." }, { status: 500 || "Internal server error." })
     }
