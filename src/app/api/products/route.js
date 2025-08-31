@@ -4,7 +4,6 @@ import { successResponseHandler } from "@/utils/successResponseHandler";
 import { errorResponseHandler } from "@/utils/errorResponseHandler";
 import { NextResponse } from "next/server";
 
-
 export const GET = async () => {
     try {
         connectDB();

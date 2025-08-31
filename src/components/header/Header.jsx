@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { FiSearch, FiShoppingCart } from "react-icons/fi";
 import { IoMenu } from "react-icons/io5";
 import { useCart } from '@/context/CartContext';
+import { HEADER_LINKS } from '@/constants';
+import CartIcon from './CartIcon';
 
 export default function Header() {
 
@@ -34,25 +36,27 @@ export default function Header() {
                 <div>
                     <nav className='hidden md:flex items-center p-2 gap-4'>
                         <ul className='flex  items-center justify-center gap-3'>
-                            <Link href={'/'}><li className='text-lg hover:text-pink-600 font-medium text-gray-700 duration-200'>Home</li>
-                            </Link>
-                            <Link href={'/store'}><li className='text-lg hover:text-pink-600 font-medium text-gray-700 duration-200'>Store</li>
-                            </Link>
+                            {
+                                HEADER_LINKS.map((hl, i) => {
+                                    return (
+                                        <li key={hl.linkID} className='text-lg hover:text-pink-600 font-medium text-gray-700 duration-200'> <Link href={hl.href}>{hl.name}</Link>
+                                        </li>
+                                    )
+                                })
+                            }
                         </ul>
-                        <div className='relative'>
-                            <Link className="hover:text-pink-600" href={"/cart"}> <FiShoppingCart size={24} />
-                            </Link>
-                            <span className='absolute top-[-10px] right-[-20px] bg-pink-600  text-white text-xs rounded-full h-5 w-5 flex items-center justify-center'>
-                                {totalQuantity}
-                            </span>
-                        </div>
+                        <CartIcon
+                            href="/cart"
+                            totalQuantity={totalQuantity}
+                        />
+
                     </nav>
                     <IoMenu onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden text-2xl hover:text-pink-600 cursor-pointer" />
                 </div>
             </Container>
             {/* Dropdown menu section */}
             <div className={`md:hidden absolute top-full left-0 w-full z-20 flex items-center justify-center flex-col px-2 py-3 bg-white/90 backdrop-blur-sm shadow
-                 transition-all duration-500 ease-in-out ${isMenuOpen ?'max-h-64 opacity-100' : 'max-h-0 opacity-0'} `}>
+                 transition-all duration-500 ease-in-out ${isMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'} `}>
                 <div className='flex w-1/2 mb-2 items-center border border-pink-400 rounded-full'>
                     <input
                         className='text-slate-700 w-full px-4 outline-none'
@@ -63,13 +67,20 @@ export default function Header() {
                     </div>
                 </div>
                 <ul>
-                    <Link onClick={()=>setIsMenuOpen(!isMenuOpen)} href={'/'}><li className='text-lg hover:text-pink-600 font-medium text-gray-700 duration-200'>Home</li>
-                    </Link>
-                    <Link onClick={()=>setIsMenuOpen(!isMenuOpen)} href={'/store'}><li className='text-lg hover:text-pink-600 font-medium text-gray-700 duration-200'>Store</li>
-                    </Link>
+                    {
+                        HEADER_LINKS.map((hl, i) => {
+                            return (
+                                <li key={hl.linkID} className='text-lg hover:text-pink-600 font-medium text-gray-700 duration-200'>
+                                    <Link onClick={() => setIsMenuOpen(!isMenuOpen)} href={hl.href}>
+                                        {hl.name}
+                                    </Link>
+                                </li>
+                            )
+                        })
+                    }
                 </ul>
                 <div className='relative mt-3'>
-                    <Link onClick={()=>setIsMenuOpen(!isMenuOpen)} className="hover:text-pink-600" href={"/cart"}> <FiShoppingCart size={24} />
+                    <Link onClick={() => setIsMenuOpen(!isMenuOpen)} className="hover:text-pink-600" href={"/cart"}> <FiShoppingCart size={24} />
                     </Link>
                     <span className='absolute top-[-10px] right-[-20px] bg-pink-600  text-white text-xs rounded-full h-5 w-5 flex items-center justify-center'>
                         {totalQuantity}

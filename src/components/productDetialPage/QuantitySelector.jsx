@@ -29,7 +29,6 @@ export default function QuantitySelector({ product }) {
             </div>
 
             <div className="flex gap-4 font-bold">
-                <button className="shadow text-xl p-2 rounded bg-white text-pink-600 hover:text-white hover:bg-pink-600 duration-300 hover:cursor-pointer ">Buy Now</button>
                 <button onClick={()=>handleAddToCart(quantity,product)} className="flex  items-center justify-center gap-2 shadow text-xl p-2 rounded bg-white text-pink-600 hover:text-white hover:bg-pink-600 duration-300 hover:cursor-pointer ">Add to <FiShoppingCart /></button>
             </div>
         </div>
