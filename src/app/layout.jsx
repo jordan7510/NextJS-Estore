@@ -7,6 +7,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Header from "@/components/header/Header"
 import Footer from "@/components/Footer"
 import { CartProvider } from "@/context/CartContext";
+import { Toaster } from "react-hot-toast";
 
 const oswald = Oswald({
   weight: ['300', '400', '500', '700'],
@@ -23,23 +24,20 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${oswald.variable} antialiased customScrollbar`}
-      >
+      <Toaster />
+      <body className={`${oswald.variable} antialiased customScrollbar`}>
         <CartProvider>
           <AppRouterCacheProvider>
             <ThemeProvider theme={theme}>
-              <CssBaseline/>
-                <Header />
-                <main>
-                  {children}
-                </main>
-                <Footer />
-            
+              <CssBaseline />
+              <Header />
+              <main>
+                {children}
+              </main>
+              <Footer />
             </ThemeProvider>
           </AppRouterCacheProvider>
         </CartProvider>
-
       </body>
     </html >
   );
