@@ -1,21 +1,35 @@
 "use client"
 import Button from '@/components/Button';
+import axios from 'axios';
 import Link from 'next/link'
+import { useRouter } from 'next/navigation';
 import { useState } from 'react'
+import toast from 'react-hot-toast';
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 
 export default function LoginPage() {
-
     const [user, setUser] = useState({
         username: "",
         email: "",
         password: "",
     });
+    const router = useRouter();
     const [showPassword, setShowPassword] = useState(false)
-
-    const handleSubmit = (e) => {
-        e.preventDefault;
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post("/api/users/login", user)
+            const data = await response?.data;
+            if(data.success){
+                toast.success(data.message)
+                router.push("/dashboard")
+            }
+        } catch (error) {
+            console.error(error)
+            toast.error(error.response.data.error)
+        }
+        
     }
 
     return (
@@ -43,7 +57,6 @@ export default function LoginPage() {
                                 required
                                 onChange={(e) => setUser({ ...user, password: e.target.value })}
                             />
-
                             {
                                 showPassword ? (
                                     <FaEyeSlash onClick={() => setShowPassword(!showPassword)} className='absolute top-3 right-0 mt-1 mx-4 hover:cursor-pointer hover:text-pink-600' />

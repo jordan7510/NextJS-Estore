@@ -24,8 +24,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <Toaster />
       <body className={`${oswald.variable} antialiased customScrollbar`}>
+        <Toaster />
         <CartProvider>
           <AppRouterCacheProvider>
             <ThemeProvider theme={theme}>
