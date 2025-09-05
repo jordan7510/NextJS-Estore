@@ -8,6 +8,7 @@ import Header from "@/components/header/Header"
 import Footer from "@/components/Footer"
 import { CartProvider } from "@/context/CartContext";
 import { Toaster } from "react-hot-toast";
+import { Providers } from "./Provides";
 
 const oswald = Oswald({
   weight: ['300', '400', '500', '700'],
@@ -26,18 +27,20 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${oswald.variable} antialiased customScrollbar`}>
         <Toaster />
-        <CartProvider>
-          <AppRouterCacheProvider>
-            <ThemeProvider theme={theme}>
-              <CssBaseline />
-              <Header />
-              <main>
-                {children}
-              </main>
-              <Footer />
-            </ThemeProvider>
-          </AppRouterCacheProvider>
-        </CartProvider>
+        <Providers>
+          <CartProvider>
+            <AppRouterCacheProvider>
+              <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <Header />
+                <main>
+                  {children}
+                </main>
+                <Footer />
+              </ThemeProvider>
+            </AppRouterCacheProvider>
+          </CartProvider>
+        </Providers>
       </body>
     </html >
   );

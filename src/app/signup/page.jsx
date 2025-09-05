@@ -23,7 +23,7 @@ export default function SignupPage() {
         try {
             const response = await axios.post("/api/users/signup", user);
             if (response?.data?.success) {
-                toast(response?.data?.message)
+                toast.success(response?.data?.message)
                 e.target.reset();
                 setUser({
                     userName: "",

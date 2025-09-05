@@ -11,7 +11,7 @@ export default async function FeaturedProducts() {
             <Container>
                 <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 '>
                     {
-                        data.map((prod) => {
+                        data?.map((prod) => {
                             return <ProductsCard key={prod.id} product={prod} />
                         })
                     }
