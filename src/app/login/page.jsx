@@ -21,6 +21,7 @@ export default function LoginPage() {
         try {
             const response = await axios.post("/api/users/login", user)
             const data = await response?.data;
+            console.log("login response ", data)
             if(data.success){
                 toast.success(data.message)
                 router.push("/dashboard")

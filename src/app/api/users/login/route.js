@@ -24,7 +24,8 @@ export async function POST(req) {
         //create response
         const response = NextResponse.json({
             success: true,
-            message: "Login success."
+            message: "Login success.",
+            data:""
         });
         // Set the cookies in the response
         response.cookies.set(

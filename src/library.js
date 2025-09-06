@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken"
 const getProducts = async () => {
     try {
         const response = await axios.get(`${process.env.PRODUCTS_BASE_URL}`)
-        const data = response?.data
+        const data = response?.data?.data
         return data
     } catch (error) {
         console.error(error)
@@ -23,7 +23,7 @@ const getProductById = async (id) => {
 
 const getCategories = async () => {
     const response = await axios.get(process.env.PRODUCTS_BASE_URL)
-    const products = response.data
+    const products = response.data?.data
     const categories  = products.reduce((acc, product)=>{
         if(!acc.includes(product.category)){
             acc.push(product.category)

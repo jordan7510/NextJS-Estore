@@ -8,7 +8,7 @@ import Header from "@/components/header/Header"
 import Footer from "@/components/Footer"
 import { CartProvider } from "@/context/CartContext";
 import { Toaster } from "react-hot-toast";
-import { Providers } from "./Provides";
+import { Providers } from "./Providers";
 
 const oswald = Oswald({
   weight: ['300', '400', '500', '700'],
