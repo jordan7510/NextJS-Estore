@@ -1,16 +1,24 @@
 import Product from "@/models/productsModel.js";
-import { connectDB } from "@/dbConfig/dbConfig";
+import { connectDB } from "@/lib/dbConfig";
 import { successResponseHandler } from "@/utils/successResponseHandler";
 import { errorResponseHandler } from "@/utils/errorResponseHandler";
 import { NextResponse } from "next/server";
+import redisClient from "@/lib/redis";
 
 export const GET = async () => {
     try {
+        //attempt to get products from redis first
+        const cachedProducts = await redisClient.get("products");
+        if (cachedProducts) {
+            return successResponseHandler(JSON.parse(cachedProducts), "Products found successfully.")
+        }
         connectDB();
         const product = await Product.find();
         if (!product || product.length === 0) {
             return errorResponseHandler(new Error("No products found.", 404))
         }
+        //cache products to redis client
+        await redisClient.set("products", JSON.stringify(product), "EX", 3600)
         return successResponseHandler(product, "Products found successfully.")
     } catch (error) {
         return errorResponseHandler(error)

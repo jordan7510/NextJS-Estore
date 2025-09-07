@@ -1,5 +1,5 @@
 import Container from "@/components/Container";
-import { getProductById } from "@/library";
+import { getProductById } from "@/lib/products";
 import Image from "next/image";
 import QuantitySelector from "@/components/productDetialPage/QuantitySelector.jsx";
 

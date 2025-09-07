@@ -1,7 +1,7 @@
 import React from 'react'
 import Container from '../Container'
 import ProductsCard from './ProductsCard';
-import { getProducts } from '@/library';
+import { getProducts } from '@/lib/products';
 
 export default async function RecentlyAdded() {
 const data = await getProducts();

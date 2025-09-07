@@ -1,7 +1,7 @@
 import React from 'react'
 import ProductsCard from './ProductsCard'
 import Container from '../Container'
-import { getProducts } from '@/library';
+import { getProducts } from '@/lib/products';
 
 export default async function FeaturedProducts() {
    const data = await getProducts();

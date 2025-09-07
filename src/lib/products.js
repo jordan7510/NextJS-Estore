@@ -1,5 +1,6 @@
 import axios from "axios";
 import jwt from "jsonwebtoken"
+import redisClient from "./redis";
 
 const getProducts = async () => {
     try {

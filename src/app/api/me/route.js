@@ -1,4 +1,4 @@
-import { getIdFromToken } from "@/library";
+import { getIdFromToken } from "@/lib/products";
 import User from "@/models/usersModel";
 import { NextResponse } from "next/server";
 

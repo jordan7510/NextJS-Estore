@@ -7,6 +7,8 @@ import { useState } from 'react'
 import toast from 'react-hot-toast';
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
+import { useDispatch } from 'react-redux';
+import { login } from '../redux/userSlice';
 
 export default function LoginPage() {
     const [user, setUser] = useState({
@@ -16,6 +18,7 @@ export default function LoginPage() {
     });
     const router = useRouter();
     const [showPassword, setShowPassword] = useState(false)
+    const dispatch = useDispatch();
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -24,6 +27,7 @@ export default function LoginPage() {
             console.log("login response ", data)
             if(data.success){
                 toast.success(data.message)
+                dispatch(login({user:data.user}))
                 router.push("/dashboard")
             }
         } catch (error) {

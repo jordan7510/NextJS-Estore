@@ -1,4 +1,4 @@
-import { connectDB } from "@/dbConfig/dbConfig";
+import { connectDB } from "@/lib/dbConfig";
 import Product from "@/models/productsModel";
 import { NextResponse } from "next/server";
 
